@@ -1,0 +1,44 @@
+{
+  "name": "echoes-of-chaos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Multiplayer social deduction party game — Trust your instincts. Decode the chaos. Survive the round.",
+  "scripts": {
+    "dev": "concurrently -k -n client,server -c cyan,yellow \"vite\" \"tsx watch src/server/index.ts\"",
+    "build": "vite build && node build-server.js",
+    "start": "node dist/server/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:stress": "vitest run tests/stress"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "socket.io": "^4.8.0",
+    "socket.io-client": "^4.8.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.1",
+    "esbuild": "^0.23.1",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.3",
+    "vitest": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

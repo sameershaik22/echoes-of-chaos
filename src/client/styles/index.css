@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   ECHOES OF CHAOS — Global Styles
+   ============================================================================ */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0a0a1a;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(168, 85, 247, 0.3);
+    color: #ffffff;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid #a855f7;
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================================
+   Component Utilities
+   ============================================================================ */
+
+@layer components {
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+  }
+
+  .glass-card-sm {
+    @apply glass rounded-xl p-4;
+  }
+
+  .glass-hover {
+    @apply glass transition-all duration-300;
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Glow effects */
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.1);
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3), 0 0 60px rgba(251, 146, 60, 0.1);
+  }
+
+  .glow-purple-lg {
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.4), 0 0 100px rgba(168, 85, 247, 0.15);
+  }
+
+  /* Text glow */
+  .text-glow-purple {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.2);
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.2);
+  }
+
+  .text-glow-orange {
+    text-shadow: 0 0 20px rgba(251, 146, 60, 0.5), 0 0 40px rgba(251, 146, 60, 0.2);
+  }
+
+  /* Gradient text */
+  .text-gradient-main {
+    @apply bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-orange bg-clip-text text-transparent;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-neon-purple to-neon-purple-dark rounded-xl
+           font-display text-sm tracking-wider uppercase
+           hover:shadow-glow-purple transition-all duration-300 hover:scale-[1.03]
+           active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed
+           disabled:hover:scale-100 disabled:hover:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-neon-cyan/40 rounded-xl
+           font-display text-sm tracking-wider uppercase text-neon-cyan
+           hover:bg-neon-cyan/10 hover:shadow-glow-cyan hover:border-neon-cyan/60
+           transition-all duration-300 hover:scale-[1.03]
+           active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-lg text-gray-400
+           hover:text-white hover:bg-white/5
+           transition-all duration-200
+           active:scale-[0.97];
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 bg-red-600/20 border border-red-500/40 rounded-xl
+           font-display text-sm tracking-wider uppercase text-red-400
+           hover:bg-red-600/30 hover:border-red-500/60
+           transition-all duration-300;
+  }
+
+  /* Input fields */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl
+           text-white placeholder:text-gray-500
+           focus:border-neon-purple/50 focus:bg-white/[0.07]
+           focus:outline-none focus:ring-2 focus:ring-neon-purple/20
+           transition-all duration-200
+           font-body;
+  }
+
+  /* Holographic border effect */
+  .holo-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .holo-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(
+      from 0deg,
+      #a855f7,
+      #22d3ee,
+      #fb923c,
+      #a855f7
+    );
+    border-radius: inherit;
+    z-index: -1;
+    animation: spin 8s linear infinite;
+  }
+
+  .holo-border::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: #0a0a1a;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium tracking-wide;
+  }
+
+  .badge-purple {
+    @apply badge bg-neon-purple/20 text-neon-purple-light border border-neon-purple/30;
+  }
+
+  .badge-cyan {
+    @apply badge bg-neon-cyan/20 text-neon-cyan-light border border-neon-cyan/30;
+  }
+
+  .badge-orange {
+    @apply badge bg-neon-orange/20 text-neon-orange-light border border-neon-orange/30;
+  }
+}
+
+/* ============================================================================
+   Scrollbar
+   ============================================================================ */
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
+  }
+}
+
+/* ============================================================================
+   Particle Grid Background
+   ============================================================================ */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}

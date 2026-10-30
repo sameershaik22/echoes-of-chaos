@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: echoes-of-chaos
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+
+# DEPLOYMENT NOTES:
+#
+# Render free tier behavior:
+# - The service spins DOWN after ~15 minutes of inactivity.
+# - First request after spin-down triggers a cold start (30-60s delay).
+# - The /api/health endpoint does NOT keep the service awake.
+# - All in-memory state (rooms, sessions, active games) is LOST on restart.
+# - This is acceptable for a party game — players simply create a new room.
+#
+# WebSocket support:
+# - Render supports WebSocket connections natively.
+# - Socket.IO will use WebSocket as primary transport with long-polling fallback.
+#
+# To deploy:
+# 1. Push code to a GitHub/GitLab repository.
+# 2. Connect the repository to Render.
+# 3. Render auto-detects render.yaml and creates the service.
+# 4. Access via https://echoes-of-chaos.onrender.com (or custom domain).
